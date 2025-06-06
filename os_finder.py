@@ -361,10 +361,16 @@ if __name__ == '__main__':
 
         print("[red][ ..+.. ] Detected Operating System With Flag Response  ...[/red]")
         finder.flag_response(ip_address)
-        exit()
+        
     else:
         options = ast.literal_eval(Enter)# Eval 2 +5 string verisini saki int gibi toplar ve sonucu döndürür x = 2 y = 5   result = eval("x+y")
         print(finder.guess_os_from_tcp_options(options))
+
+        print("[red][ ..+.. ] Detected Operating System With Windows Size and TTL Value  ...[/red]")
+        finder.Os_Detection(ip_address)
+
+        print("[red][ ..+.. ] Detected Operating System With Flag Response  ...[/red]")
+        finder.flag_response(ip_address)
 
 
     
