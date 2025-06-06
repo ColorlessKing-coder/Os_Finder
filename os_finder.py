@@ -292,8 +292,9 @@ class OsFinder:
         print(f"[snow][ ✔ ] Ports Status For TCP Info : {Dict} [/snow]")
 
         if not Open_Ports:
-            print("[yellow]Açık port yok. Çıkılıyor.[/yellow]")
+            print("[yellow]There is no open port !!!!. Çıkılıyor.[/yellow]")
             return
+        
 
         for dst_port in Open_Ports:
             src_port = random.randint(1024, 65535)
@@ -353,13 +354,17 @@ if __name__ == '__main__':
     ip_address = input(f"      [İ][snow][/snow]Please Enter IPv4 Address : ")
     print("[red][ ..+.. ] Detected Operating System With TCP Options...[/red]")
     finder.TCP_Option_Analyze(ip_address)
-    Enter = input("Give me tcp option Values : ")
-    options = ast.literal_eval(Enter)# Eval 2 +5 string verisini saki int gibi toplar ve sonucu döndürür x = 2 y = 5   result = eval("x+y")
-    print(finder.guess_os_from_tcp_options(options))
+    Enter = input("Give me tcp option Values (İf you have no value please enter q  ): ")
+    if Enter == "q":
+        print("[red][ ..+.. ] Detected Operating System With Windows Size and TTL Value  ...[/red]")
+        finder.Os_Detection(ip_address)
+
+        print("[red][ ..+.. ] Detected Operating System With Flag Response  ...[/red]")
+        finder.flag_response(ip_address)
+        exit()
+    else:
+        options = ast.literal_eval(Enter)# Eval 2 +5 string verisini saki int gibi toplar ve sonucu döndürür x = 2 y = 5   result = eval("x+y")
+        print(finder.guess_os_from_tcp_options(options))
 
 
-    print("[red][ ..+.. ] Detected Operating System With Windows Size and TTL Value  ...[/red]")
-    finder.Os_Detection(ip_address)
-
-    print("[red][ ..+.. ] Detected Operating System With Flag Response  ...[/red]")
-    finder.flag_response(ip_address)
+    
